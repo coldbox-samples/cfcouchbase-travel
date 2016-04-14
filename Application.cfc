@@ -29,7 +29,18 @@ component{
   public boolean function onApplicationStart(){
     application.cbBootstrap = new coldbox.system.Bootstrap( COLDBOX_CONFIG_FILE, COLDBOX_APP_ROOT_PATH, COLDBOX_APP_KEY, COLDBOX_APP_MAPPING );
     application.cbBootstrap.loadColdbox();
-
+    application['config'] = {
+      'autoprovision': true,
+      'hostName': "localhost",
+      'httpPort': 3000,
+      'dataSource': "embedded",
+      'wait': 3000,
+      'checkInterval': 1000,
+      'verbose': false,
+      'distanceCostMultiplier': 0.1,
+      'avgKmHr': 800,
+      'hashToken': "UNSECURE_SECRET_TOKEN"
+    };
     // create connection to couchbase cluster
     application['couchbase'] = new cfcouchbase.CouchbaseClient({
       servers		= "127.0.0.1",
@@ -64,15 +75,7 @@ component{
 
   // request start
   public boolean function onRequestStart(string targetPage){
-    // create a connection to the default bucket if it does not already exist
-		if(!structKeyExists(application, "couchbase")){
-
-		}
-    application['couchbase'] = new cfcouchbase.CouchbaseClient({
-      servers		= "127.0.0.1",
-      bucketname	= "travel-sample",
-      caseSensitiveKeys = true
-    });
+    
     // Process ColdBox Request
     application.cbBootstrap.onRequestStart( arguments.targetPage );
 
