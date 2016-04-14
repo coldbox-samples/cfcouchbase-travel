@@ -9,7 +9,8 @@ component extends="coldbox.system.EventHandler"{
     var data = {};
     // make sure there is a search term
     if(structKeyExists(arguments.rc, "to") && structKeyExists(arguments.rc, "from") && structKeyExists(arguments.rc, "leave")){
-      data = airport.findAll(argumentCollection=arguments);
+      data = flightPath.findAll(argumentCollection=arguments.rc);
+      res = data;
     }
     event.renderData( type="json", data=res );
   }
