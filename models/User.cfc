@@ -18,17 +18,37 @@ component accessors="true"{
     return this;
   }
 
-  public array function findByName(required string user){
-    var results = application.couchbase.query(
-      designDocumentName='user',
-      viewName='findByName',
-      options = {
+  public array function findByName(required string user, boolean inflate=false){
+    var options = {
+      designDocumentName: "user",
+      viewName: "findByName",
+      options: {
         limit: 1,
-        key: arguments.user,
+        key: lCase( arguments.user ),
         reduce: false,
-        includeDocs: true
-      });
-    return results;
+        includeDocs: true,
+        stale: "FALSE"
+      }
+    };
+    if (arguments.inflate) {
+      options['inflateTo'] = "models.User";
+    }
+    return application.couchbase.query( argumentCollection=options );;
+  }
+
+  public void function addFlights( required array flights){
+    var flight = "";
+    for(var leg in arguments.flights){
+      flight = new Flight();
+      flight.setName( leg._data.name );
+      flight.setFlight( leg._data.flight );
+      flight.setDate( leg._data.date );
+      flight.setSourceAirport( leg._data.sourceairport );
+      flight.setDestinationAirport( leg._data.destinationairport );
+      flight.setBookedOn( now().getTime() );
+      arrayAppend( variables.flights, flight );
+    }
+    return;
   }
 
   public void function save(){
