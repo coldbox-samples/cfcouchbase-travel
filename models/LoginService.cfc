@@ -14,7 +14,8 @@ component{
       // set the user properties
       user.setName(arguments.username);
       user.setPassword(arguments.password);
-      user.setToken(lCase(createUUID()));
+      // just base64 the username, this should probably be JWT at some point
+      user.setToken(toBase64(arguments.username));
       user.setFlights([]);
       // save the document
       user.save();

@@ -64,7 +64,7 @@ travelApp.controller("LoginController", function($scope, $rootScope, $state, $ht
                 if(response.data.success) {
                     $scope.formData.error = null;
                     //$cookies.put('user',jwtHelper.decodeToken(response.data.success).user, {"expires": cookieExpiration});
-                    $cookies.put('user', response.data.success, {"expires": cookieExpiration});
+                    $cookies.put('user', atob(response.data.success), {"expires": cookieExpiration});
                     $cookies.put('token',response.data.success, {"expires": cookieExpiration});
                     $state.go("home");
                 }
@@ -87,7 +87,7 @@ travelApp.controller("LoginController", function($scope, $rootScope, $state, $ht
                 if(response.data.success){
                     $scope.formData.error=null;
                     //$cookies.put('user',jwtHelper.decodeToken(response.data.success).user, {"expires": cookieExpiration});
-                    $cookies.put('user', response.data.success, {"expires": cookieExpiration});
+                    $cookies.put('user', atob(response.data.success), {"expires": cookieExpiration});
                     $cookies.put('token',response.data.success, {"expires": cookieExpiration});
                     $state.go("home");
                 }
