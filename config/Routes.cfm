@@ -38,7 +38,7 @@
     pattern = "api/user/login",
     handler = "api.user.Login",
     action = {
-      GET = "index",
+      GET = "login",
       POST = "create"
   });
 

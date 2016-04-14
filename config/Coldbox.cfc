@@ -46,7 +46,7 @@
 
     // custom settings
     settings = {
-
+      
     };
 
     // environment settings, create a detectEnvironment() method to detect it yourself.
