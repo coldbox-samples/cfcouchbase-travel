@@ -1,4 +1,4 @@
-component{
+component accessors="true"{
 
   property name="name" type="string";
   property name="flight" type="string";
@@ -7,8 +7,7 @@ component{
   property name="destinationairport" type="string";
   property name="bookedon" type="string";
 
-  // create Action
-  public User function init(){
+  public Flight function init(){
     variables['name'] = "";
     variables['flight'] = "";
     variables['date'] = "";

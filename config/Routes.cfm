@@ -38,8 +38,16 @@
     pattern = "api/user/login",
     handler = "api.user.Login",
     action = {
-      GET = "login",
+      GET = "index",
       POST = "create"
+  });
+
+  addRoute(
+    pattern = "api/user/flights",
+    handler = "api.user.Flights",
+    action = {
+      GET = "index",
+      POST = "reserve"
   });
 
   addRoute(pattern=":handler/:action?");

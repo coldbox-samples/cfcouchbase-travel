@@ -383,7 +383,7 @@ angular.module('ngCart.directives', ['ngCart.fulfilment'])
             link: function (scope, element, attrs) {
                 scope.book = function () {
                     $rootScope.fact="Book Flights, using angular ngCart Directive";
-                    $rootScope.publishMessage("REST POST=/api/user/flights");
+
                     $http.post('/api/user/flights', {
                         token: $cookies.get('token'),
                         flights: this.ngCart.getItems()
