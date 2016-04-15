@@ -1,0 +1,14 @@
+{
+    "openBrowser": true,
+    "web":{
+        "host": "127.0.0.1",
+        "http": {
+            "port": 8080,
+            "enable": true
+        },
+        "rewrites":{
+            "enable": true
+        }
+    },
+    "rewriteEnable": true
+}
