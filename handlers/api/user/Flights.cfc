@@ -4,7 +4,7 @@ component extends="coldbox.system.EventHandler"{
   property name="book" inject="BookingService";
 
   // listing Action
-  function index(event, rc, prc){
+  function index ( event, rc, prc ) {
     var res = { "book":"bad request" };
     // make sure there is a user and password
     if (structKeyExists( arguments.rc, "token" )) {
@@ -14,7 +14,7 @@ component extends="coldbox.system.EventHandler"{
   }
 
   // book flights
-  function reserve(event, rc, prc){
+  function reserve ( event, rc, prc ) {
     var res = { "book":"bad request" };
     var input = arguments.rc;
     var data = {};

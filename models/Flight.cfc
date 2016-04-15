@@ -7,13 +7,18 @@ component accessors="true"{
   property name="destinationairport" type="string";
   property name="bookedon" type="string";
 
-  public Flight function init(){
-    variables['name'] = "";
-    variables['flight'] = "";
-    variables['date'] = "";
-    variables['sourceairport'] = "";
-    variables['destinationairport'] = "";
-    variables['bookedon'] = "";
+
+  variables['name'] = "";
+  variables['flight'] = "";
+  variables['date'] = "";
+  variables['sourceairport'] = "";
+  variables['destinationairport'] = "";
+  variables['bookedon'] = "";
+
+  /**
+  * Flight Initialization
+  */
+  public Flight function init () {
     return this;
   }
 

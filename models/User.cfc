@@ -7,18 +7,35 @@ component accessors="true"{
   property name="token" type="string";
   property name="flights" type="array";
 
-  // create Action
-  public User function init(){
-    variables['_id'] = "";
-    variables['_type'] = "";
-    variables['name'] = "";
-    variables['password'] = "";
-    variables['token'] = "";
-    variables['flights'] = [];
+  variables['_id'] = "";
+  variables['_type'] = "";
+  variables['name'] = "";
+  variables['password'] = "";
+  variables['token'] = "";
+  variables['flights'] = [];
+
+  /**
+ * User Initialization
+ */
+  public User function init() {
     return this;
   }
 
-  public array function findByName(required string user, boolean inflate=false){
+  /**
+ * Override the setName accessor to ensure the name is always lowercased
+ * @value The value to set for the name
+ */
+  public void function setName( required string value ) {
+    variables['name'] = lCase( arguments.value );
+    return;
+  }
+
+  /**
+ * Lookup a user by their name
+ * @user The user to lookup
+ * @inflate A boolean indicating whether or not the result should be inflated to a new User
+ */
+  public array function findByName( required string user, boolean inflate=false ) {
     var options = {
       designDocumentName: "user",
       viewName: "findByName",
@@ -33,12 +50,16 @@ component accessors="true"{
     if (arguments.inflate) {
       options['inflateTo'] = "models.User";
     }
-    return application.couchbase.query( argumentCollection=options );;
+    return application.couchbase.query( argumentCollection=options );
   }
 
-  public void function addFlights( required array flights){
+  /**
+  * Adds flights to a users record
+  * @flights An array flights to add to the user
+  */
+  public void function addFlights( required array flights ) {
     var flight = "";
-    for(var leg in arguments.flights){
+    for (var leg in arguments.flights) {
       flight = new Flight();
       flight.setName( leg._data.name );
       flight.setFlight( leg._data.flight );
@@ -51,14 +72,18 @@ component accessors="true"{
     return;
   }
 
-  public void function save(){
+  /**
+  * Saves the users record back to Couchbase
+  */
+  public void function save() {
     // make sure there is an _id
-    if(!len(variables._id)){
-      variables['_id'] = "User|" & lCase(createUUID());
+    if (!len( variables._id )) {
+      variables['_id'] = "User|" & lCase( createUUID() );
     }
     // always set the type
     variables['_type'] = "User";
-    application.couchbase.set(id=variables._id, value=this);
+    application.couchbase.set( id=variables._id, value=this );
     return;
   }
+
 }

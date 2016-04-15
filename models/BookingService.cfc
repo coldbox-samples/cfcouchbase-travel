@@ -1,13 +1,21 @@
 component{
 
   property name="user" inject="User";
+
   /**
-  *
-  * @param username
-  * @param flights
+  * BookingService Initialization
   */
-  public struct function bookFlights( required string username, required array flights ) {
-    var lookup = user.findByName(arguments.username, true);
+  public BookingService function init () {
+    return this;
+  }
+
+  /**
+  * Books flights for a user
+  * @username The user to book the flights for
+  * @flights An array of flights to book for the user
+  */
+  public struct function bookFlights ( required string username, required array flights ) {
+    var lookup = user.findByName( user=arguments.username, inflate=true);
     // make sure the user doesn't already exist
     if (arrayLen( lookup )) {
       user = lookup[1].document;
@@ -20,11 +28,11 @@ component{
     }
   }
   /**
-  *
-  * @param username
+  * Gets all of a users flights
+  * @username The user to get the flights for
   */
-  public array function getFlights( required string username ){
-    var lookup = user.findByName(arguments.username, true);
+  public array function getFlights ( required string username ) {
+    var lookup = user.findByName( user=arguments.username, inflate=true );
     var ret = [];
     // make sure the user was found
     if (arrayLen( lookup )) {
