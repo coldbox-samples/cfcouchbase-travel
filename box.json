@@ -1,0 +1,92 @@
+{
+    "name":"CFCouchbase Travel Sample",
+    "version":"0.0.1",
+    "author":"",
+    "location":"",
+    "directory":"",
+    "createPackageDirectory":true,
+    "packageDirectory":"",
+    "homepage":"",
+    "documentation":"",
+    "repository":{
+        "type":"",
+        "URL":""
+    },
+    "bugs":"",
+    "slug":"cfcouchbase-travel-sample",
+    "shortDescription":"CFCouchbase Travel Sample",
+    "description":"This is a ColdFusion port of the Couchbase NodeJS Travel Sample Application (https://github.com/couchbaselabs/try-cb-nodejs)",
+    "instructions":"",
+    "changelog":"",
+    "type":"",
+    "keywords":[
+        "couchbase",
+        "cfcouchbase",
+        "coldbox",
+        "relax"
+    ],
+    "private":false,
+    "engines":[
+        {
+            "type":"",
+            "version":""
+        }
+    ],
+    "defaultEngine":"",
+    "defaultPort":0,
+    "projectURL":"",
+    "license":[
+        {
+            "type":"",
+            "URL":""
+        }
+    ],
+    "contributors":[
+        
+    ],
+    "dependencies":{
+        "coldbox":"4.2.0+00002",
+        "cfcouchbase":"http://integration.stg.ortussolutions.com/artifacts/ortussolutions/cfcouchbase/1.1.0/cfcouchbase-1.1.0.zip"
+    },
+    "devDependencies":{
+        
+    },
+    "installPaths":{
+        "coldbox":"coldbox",
+        "cfcouchbase":"cfcouchbase"
+    },
+    "ignore":[
+        "**/.*",
+        "test",
+        "tests"
+    ],
+    "testbox":{
+        "runner":[
+            {
+                "default":""
+            }
+        ],
+        "labels":[
+            
+        ],
+        "reporter":"",
+        "reporterResults":"",
+        "bundles":[
+            ""
+        ],
+        "directory":{
+            "mapping":"",
+            "recurse":true
+        },
+        "watchers":[
+            
+        ],
+        "notify":{
+            "emails":[
+                
+            ],
+            "growl":"",
+            "URL":""
+        }
+    }
+}
