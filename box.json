@@ -42,14 +42,14 @@
         }
     ],
     "contributors":[
-
+        
     ],
     "dependencies":{
         "coldbox":"4.2.0+00002",
-        "cfcouchbase":"1.1.0.00007"
+        "cfcouchbase":"http://integration.stg.ortussolutions.com/artifacts/ortussolutions/cfcouchbase/1.1.0/cfcouchbase-1.1.0.zip"
     },
     "devDependencies":{
-
+        
     },
     "installPaths":{
         "coldbox":"coldbox",
@@ -67,7 +67,7 @@
             }
         ],
         "labels":[
-
+            
         ],
         "reporter":"",
         "reporterResults":"",
@@ -79,11 +79,11 @@
             "recurse":true
         },
         "watchers":[
-
+            
         ],
         "notify":{
             "emails":[
-
+                
             ],
             "growl":"",
             "URL":""

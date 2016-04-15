@@ -7,6 +7,7 @@ www.ortussolutions.com
 component{
   // Application properties
   this.name = hash( getCurrentTemplatePath() );
+  this.applicationTimeout = createTimeSpan( 0, 1, 0, 0 );
   this.sessionManagement = true;
   this.sessionTimeout = createTimeSpan(0,0,30,0);
   this.setClientCookies = true;
@@ -23,10 +24,10 @@ component{
   // You can add more paths or change the reload flag as well.
   this.javaSettings = { loadPaths = [ "lib" ], reloadOnChange = false };
 
-  this.mappings[ "/cfcouchbase" ] = expandPath( "modules/cfcouchbase" );
+  this.mappings[ "/cfcouchbase" ] = expandPath( "/cfcouchbase" );
 
   // application start
-  public boolean function onApplicationStart(){
+  public boolean function onApplicationStart () {
     application.cbBootstrap = new coldbox.system.Bootstrap( COLDBOX_CONFIG_FILE, COLDBOX_APP_ROOT_PATH, COLDBOX_APP_KEY, COLDBOX_APP_MAPPING );
     application.cbBootstrap.loadColdbox();
     application['config'] = {
@@ -42,11 +43,11 @@ component{
       'hashToken': "UNSECURE_SECRET_TOKEN"
     };
     // create connection to couchbase cluster
-    application['couchbase'] = new cfcouchbase.CouchbaseClient({
+    application['couchbase'] = new cfcouchbase.CouchbaseClient( {
       servers		= "127.0.0.1",
       bucketname	= "travel-sample",
       caseSensitiveKeys = true
-    });
+    } );
     // create a view
     application.couchbase.asyncSaveView(
 			'user',
@@ -65,28 +66,28 @@ component{
 	* Runs when the application ends
 	* @appScope the application scope
 	*/
-	public void function onApplicationEnd(required struct appScope){
+	public void function onApplicationEnd ( required struct appScope ) {
 		// if the couchbase connection is present close it's connections
-		if(structKeyExists(arguments.appScope, "couchbase")){
-			arguments.appScope.couchbase.shutdown(10);
+		if(structKeyExists( arguments.appScope, "couchbase" )){
+			arguments.appScope.couchbase.shutdown( 10 );
 		}
 		return;
 	}
 
   // request start
-  public boolean function onRequestStart(string targetPage){
-    
+  public boolean function onRequestStart ( string targetPage ) {
+
     // Process ColdBox Request
     application.cbBootstrap.onRequestStart( arguments.targetPage );
 
     return true;
   }
 
-  public void function onSessionStart(){
+  public void function onSessionStart () {
     application.cbBootStrap.onSessionStart();
   }
 
-  public void function onSessionEnd( struct sessionScope, struct appScope ){
+  public void function onSessionEnd ( struct sessionScope, struct appScope ) {
     arguments.appScope.cbBootStrap.onSessionEnd( argumentCollection=arguments );
   }
 
