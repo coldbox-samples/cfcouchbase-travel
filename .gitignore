@@ -1,0 +1,9 @@
+node_modules
+.DS_Store
+.sass-cache
+bower_components/
+.vagrant
+*.log
+coldbox/
+modules/
+cfcouchbase/
